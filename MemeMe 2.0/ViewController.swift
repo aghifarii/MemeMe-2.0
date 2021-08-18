@@ -16,6 +16,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
     @IBOutlet weak var actionButton: UIBarButtonItem!
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var toolBar: UIToolbar!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     let textDelegate = MyTextFieldDelegate()
     
@@ -40,7 +41,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
         super.viewDidLoad()
         setupTextField()
         imageView.sizeToFit()
-        
     }
     
     func pickImage(source: UIImagePickerController.SourceType){
@@ -69,11 +69,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
                     }
                 }
         present(controller, animated: true, completion: nil)
-        //controller.completionWithItemsHandler = {
-            
-        //}
-        
     }
+    
+    @IBAction func cancelButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
@@ -124,6 +125,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
     @objc func keyboardWillHide(_ notification:Notification){
         view.frame.origin.y = 0
     }
+    
+    func startOver() {
+        if let navigationController = self.navigationController {
+            navigationController.popToRootViewController(animated: true)
+        }
+    }
+    
 
     func getKeyboardHeight(_ notification:Notification) -> CGFloat {
         let userInfo = notification.userInfo
@@ -151,7 +159,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
     }
     
     func save(){
-        let _ = Meme(topTextMeme: topText.text!, bottomTextMeme: bottomText.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
+        let meme = Meme(topTextMeme: topText.text!, bottomTextMeme: bottomText.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
+        // Add it to the memes array in the Application Delegate
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)
     }
     
     
