@@ -11,6 +11,8 @@ class MemeTableViewController: UITableViewController {
     
     @IBOutlet weak var navigationBar: UINavigationItem!
 
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    //var memes = appDelegate.memes
     var memes: [Meme]! {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate

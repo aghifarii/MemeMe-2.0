@@ -14,7 +14,7 @@ class MemeCollectionViewController: UICollectionViewController {
     @IBOutlet weak var memeFlowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var navigationBar: UINavigationItem!
 
-    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var memes: [Meme]! {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
