@@ -9,16 +9,20 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class MemeCollectionViewController: UICollectionViewController {
+class MemeCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var memeFlowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var navigationBar: UINavigationItem!
 
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var memes: [Meme]! {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         return appDelegate.memes
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.collectionView.reloadData()
+        
     }
     
     override func viewDidLoad() {

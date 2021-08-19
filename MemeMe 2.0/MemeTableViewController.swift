@@ -10,13 +10,17 @@ import UIKit
 class MemeTableViewController: UITableViewController {
     
     @IBOutlet weak var navigationBar: UINavigationItem!
-
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    //var memes = appDelegate.memes
+   
     var memes: [Meme]! {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         return appDelegate.memes
+    }
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
    
     override func viewDidLoad() {
@@ -28,10 +32,10 @@ class MemeTableViewController: UITableViewController {
     
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 0
+//    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
