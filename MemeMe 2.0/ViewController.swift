@@ -74,8 +74,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
     @IBAction func cancelButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
-    
+        
     override func viewWillAppear(_ animated: Bool) {
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         actionButton.isEnabled = imageView.image != nil
@@ -126,6 +125,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
         view.frame.origin.y = 0
     }
     
+    // MARK: Start Over
     func startOver() {
         if let navigationController = self.navigationController {
             navigationController.popToRootViewController(animated: true)
@@ -164,6 +164,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         appDelegate.memes.append(meme)
+        dismiss(animated: true, completion: nil)
     }
     
     
