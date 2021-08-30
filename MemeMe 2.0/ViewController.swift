@@ -131,7 +131,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
             navigationController.popToRootViewController(animated: true)
         }
     }
-    
 
     func getKeyboardHeight(_ notification:Notification) -> CGFloat {
         let userInfo = notification.userInfo
@@ -165,6 +164,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
         let appDelegate = object as! AppDelegate
         appDelegate.memes.append(meme)
         dismiss(animated: true, completion: nil)
+        
     }
     
     

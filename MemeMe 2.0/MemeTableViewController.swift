@@ -10,14 +10,12 @@ import UIKit
 class MemeTableViewController: UITableViewController {
     
     @IBOutlet weak var navigationBar: UINavigationItem!
-   
+    
     var memes: [Meme]! {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         return appDelegate.memes
     }
-    
-    
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
@@ -28,6 +26,7 @@ class MemeTableViewController: UITableViewController {
         
         let addMeme = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addMeme(_:)) )
             self.navigationBar.rightBarButtonItem  = addMeme
+        
     }
     
     // MARK: - Table view data source
@@ -47,9 +46,14 @@ class MemeTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemeCell")!
         let memes = self.memes[(indexPath as NSIndexPath).row]
         cell.imageView?.image = memes.memedImage
-        cell.textLabel?.text = memes.topTextMeme
+        cell.textLabel?.text = memes.topTextMeme + "..." + memes.bottomTextMeme
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeDetailsViewController") as! MemeDetailsViewController
+        self.navigationController!.pushViewController(detailController, animated: true)
     }
     
     @objc func addMeme(_ sender: AnyObject) {
