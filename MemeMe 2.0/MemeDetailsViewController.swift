@@ -12,22 +12,17 @@ class MemeDetailsViewController: UIViewController {
     @IBOutlet weak var cancelButton: UINavigationBar!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var memeImageDisplay: UIImageView!
-    
-    var memes: [Meme]! {
-        let object = UIApplication.shared.delegate
-        let appDelegate = object as! AppDelegate
-        return appDelegate.memes
-    }
+        
+    var detailMeme : Meme!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        memeImageDisplay.sizeToFit()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //self.memeImageDisplay!.image
+        self.memeImageDisplay!.image = detailMeme.memedImage
     }
     
     @IBAction func cancelButton(_ sender: Any) {

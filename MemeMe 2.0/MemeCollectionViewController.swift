@@ -37,13 +37,13 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
             self.navigationBar.rightBarButtonItem = addMeme
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        let space:CGFloat = 3.0
-        let dimension = (view.frame.size.width - (2 * space)) / 3.0
-
-        memeFlowLayout.minimumInteritemSpacing = space
-        memeFlowLayout.minimumLineSpacing = space
-        memeFlowLayout.itemSize = CGSize(width: dimension, height: dimension)
+//        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+//        let space:CGFloat = 3.0
+//        let dimension = (view.frame.size.width - (2 * space)) / 3.0
+//
+//        memeFlowLayout.minimumInteritemSpacing = space
+//        memeFlowLayout.minimumLineSpacing = space
+//        memeFlowLayout.itemSize = CGSize(width: dimension, height: dimension)
        
     }
 
@@ -81,8 +81,8 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailController = self.storyboard!.instantiateViewController(identifier: "MemeDetailsViewController") as! MemeDetailsViewController
-        //detailController.memes = self.memes[(indexPath as NSIndexPath).row]
+        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeDetails") as! MemeDetailsViewController
+        detailController.detailMeme = self.memes[(indexPath as NSIndexPath).row]
         self.navigationController!.pushViewController(detailController, animated: true)
     }
     
