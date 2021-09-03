@@ -13,7 +13,8 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
 
     @IBOutlet weak var memeFlowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var navigationBar: UINavigationItem!
-
+    
+    
     var memes: [Meme]! {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
@@ -25,28 +26,24 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
         
     }
     
-    func reloadData() {
-        return collectionView.reloadData()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //Add new meme button
         let addMeme = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addMeme(_:)) )
             self.navigationBar.rightBarButtonItem = addMeme
-
+        
         // Register cell classes
 //        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-//        let space:CGFloat = 3.0
-//        let dimension = (view.frame.size.width - (2 * space)) / 3.0
-//
-//        memeFlowLayout.minimumInteritemSpacing = space
-//        memeFlowLayout.minimumLineSpacing = space
-//        memeFlowLayout.itemSize = CGSize(width: dimension, height: dimension)
+        let space:CGFloat = 1.0
+        let dimension = (view.frame.size.width - (2 * space)) / 3.0
+
+        memeFlowLayout.minimumInteritemSpacing = space
+        memeFlowLayout.minimumLineSpacing = space
+        memeFlowLayout.itemSize = CGSize(width: dimension, height: dimension)
        
     }
-
+    
     /*
     // MARK: - Navigation
 
@@ -73,10 +70,8 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MemeCollectionViewCell", for: indexPath) as! MemeCollectionViewCell
         let memes = self.memes[(indexPath as NSIndexPath).row]
-    
-        // Configure the cell
+        cell.memeName?.text = memes.topTextMeme
         cell.memeImageView?.image = memes.memedImage
-        
         return cell
     }
     
