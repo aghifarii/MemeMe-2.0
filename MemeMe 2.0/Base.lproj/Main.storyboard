@@ -173,28 +173,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HNa-RH-6jc">
-                                            <rect key="frame" x="0.0" y="37" width="128" height="91"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HNa-RH-6jc">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cth-yQ-Jiu" userLabel="Meme Name">
-                                            <rect key="frame" x="43" y="8" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="HNa-RH-6jc" firstAttribute="leading" secondItem="Z20-C7-tRC" secondAttribute="leading" id="4Qe-Xn-H6Q"/>
-                                        <constraint firstAttribute="bottom" secondItem="HNa-RH-6jc" secondAttribute="bottom" id="CtI-34-9Bx"/>
-                                        <constraint firstItem="cth-yQ-Jiu" firstAttribute="top" secondItem="Z20-C7-tRC" secondAttribute="topMargin" id="HdO-gg-GQI"/>
-                                        <constraint firstItem="cth-yQ-Jiu" firstAttribute="centerX" secondItem="Z20-C7-tRC" secondAttribute="centerX" id="khI-bH-6Xm"/>
-                                        <constraint firstItem="HNa-RH-6jc" firstAttribute="top" secondItem="cth-yQ-Jiu" secondAttribute="bottom" constant="8" id="zpC-kV-hmv"/>
-                                        <constraint firstItem="cth-yQ-Jiu" firstAttribute="centerX" secondItem="HNa-RH-6jc" secondAttribute="centerX" id="zy4-Xm-utF"/>
-                                    </constraints>
                                 </collectionViewCellContentView>
                                 <connections>
                                     <outlet property="memeImageView" destination="HNa-RH-6jc" id="Ttk-Tz-Ulf"/>
-                                    <outlet property="memeName" destination="cth-yQ-Jiu" id="DNc-DF-V12"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

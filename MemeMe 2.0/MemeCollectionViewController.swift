@@ -7,7 +7,7 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
+private let reuseIdentifier = "MemeCollectionViewCell"
 
 class MemeCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
@@ -20,6 +20,7 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
         let appDelegate = object as! AppDelegate
         return appDelegate.memes
     }
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewWillAppear(_ animated: Bool) {
         self.collectionView!.reloadData()
@@ -31,19 +32,26 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
         
         //Add new meme button
         let addMeme = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addMeme(_:)) )
-            self.navigationBar.rightBarButtonItem = addMeme
+        self.navigationBar.rightBarButtonItem = addMeme
         
-        // Register cell classes
-//        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        let space:CGFloat = 1.0
-        let dimension = (view.frame.size.width - (2 * space)) / 3.0
-
+        let space:CGFloat = 4.0
+        let dimension = (view.frame.size.width - (2 * space)) / 4.0
         memeFlowLayout.minimumInteritemSpacing = space
         memeFlowLayout.minimumLineSpacing = space
         memeFlowLayout.itemSize = CGSize(width: dimension, height: dimension)
-       
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.collectionView?.reloadData()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        if collectionView != nil {
+            collectionView?.reloadData()
+        }
+    }
     /*
     // MARK: - Navigation
 
@@ -64,13 +72,14 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return memes.count
+        appDelegate.memes.count == 0 ? showEmptyView(true) : showEmptyView(false)
+                return appDelegate.memes.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MemeCollectionViewCell", for: indexPath) as! MemeCollectionViewCell
         let memes = self.memes[(indexPath as NSIndexPath).row]
-        cell.memeName?.text = memes.topTextMeme
+        //cell.memeName?.text = memes.topTextMeme
         cell.memeImageView?.image = memes.memedImage
         return cell
     }
@@ -84,6 +93,18 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
     @objc func addMeme(_ sender: AnyObject) {
         let addMeme = self.storyboard!.instantiateViewController(withIdentifier: "CreateMeme") as! ViewController
         present(addMeme, animated: true, completion: nil)
+    }
+    
+    func showEmptyView(_ show: Bool) {
+        if show {
+            let label: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: collectionView!.frame.width, height: collectionView!.frame.height))
+            label.numberOfLines = 2
+            label.textAlignment = .center
+            label.text = "There are no memes, please click 'Add' to create a meme."
+            collectionView!.backgroundView = label
+        } else {
+            collectionView!.backgroundView = nil
+        }
     }
 
     // MARK: UICollectionViewDelegate
