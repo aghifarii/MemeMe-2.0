@@ -21,10 +21,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
     let textDelegate = MyTextFieldDelegate()
     
     let memeTextAtribute: [NSAttributedString.Key: Any] = [
-        NSAttributedString.Key.strokeColor: UIColor.black,
-        NSAttributedString.Key.foregroundColor : UIColor.white,
-        NSAttributedString.Key.strokeWidth : -2.0,
-        NSAttributedString.Key.font : UIFont(name: "HelveticaNeue-CondensedBlack", size: 28) as Any
+        .strokeColor: UIColor.black,
+        .foregroundColor : UIColor.white,
+        .strokeWidth : -2.0,
+        .font : UIFont(name: "HelveticaNeue-CondensedBlack", size: 28) as Any
     ]
     
     func setupTextField() {
@@ -116,8 +116,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
     }
     
     @objc func keyboardWillShow(_ notification:Notification) {
-        if bottomText.isEditing == true {
-            view.frame.origin.y -= getKeyboardHeight(notification)
+//        if bottomText.isEditing == true {
+//            view.frame.origin.y = -getKeyboardHeight(notification)
+//        }
+        if bottomText.isFirstResponder {
+            view.frame.origin.y = -getKeyboardHeight(notification)
         }
     }
     
