@@ -28,7 +28,7 @@
             </objects>
             <point key="canvasLocation" x="-672" y="280"/>
         </scene>
-        <!--MemeMe Sent-->
+        <!--Sent Memes-->
         <scene sceneID="FNI-J9-Y9D">
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="Tjs-lE-1Hz" customClass="MemeTableViewController" customModule="MemeMe_2_0" customModuleProvider="target" sceneMemberID="viewController">
@@ -60,7 +60,7 @@
                             <outlet property="delegate" destination="Tjs-lE-1Hz" id="xNk-YN-gsL"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="MemeMe Sent" id="ksW-Mo-e3e"/>
+                    <navigationItem key="navigationItem" title="Sent Memes" id="ksW-Mo-e3e"/>
                     <connections>
                         <outlet property="navigationBar" destination="ksW-Mo-e3e" id="qH1-bu-eU3"/>
                     </connections>
